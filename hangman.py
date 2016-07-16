@@ -10,28 +10,54 @@ def getword():
 	
 #variables initialization
 
-maxtries = 6
-guesses = ''
+maxerrors = 6
+guesses = ""
+letterscumulated = list()
+voidchar = "#"
 	
 #main
 
 print("-- HANGMAN --")
 print("Guess the word letter by letter, don't let that poor dude hang")
 
-tries = maxtries
+errorsleft = maxerrors
 wordtoguess = list(getword().upper())
+worddisplay = list(wordtoguess)
 
-print("Enter a letter")
-letterguess = input().upper()
+while errorsleft > 0:
+	
+	if errorsleft > 1:
+		print("You have "+str(errorsleft)+" guesses left")
+	elif errorsleft == 1:
+		print("You have "+str(errorsleft)+" guess left")
+		
+	print("Enter a letter:")
+	playerinput = input().upper()
+	while playerinput in letterscumulated:
+		print("You already tried that one, enter another letter:")
+		playerinput = input().upper()
+		
+	letterguess = playerinput
+	letterscumulated.append(letterguess)
 
-worddisplay = wordtoguess
-
-for i in range(len(worddisplay)):
-	if worddisplay[i] == letterguess:
-		print("true")
-		worddisplay[i] = letterguess
+	if letterguess in wordtoguess:
+		print("Good guess!")
 	else:
-		print("false")
-		worddisplay[i] = "#"
+		print("Got it wrong!")
+		errorsleft -= 1
+		
+	for i in range(len(worddisplay)):
+		if wordtoguess[i] in letterscumulated:
+			worddisplay[i] = wordtoguess[i]
+		else:
+			worddisplay[i] = voidchar
 
-print(' '.join(worddisplay))
+	print(' '.join(worddisplay))
+	
+	if worddisplay == wordtoguess:
+		break
+	
+if errorsleft == 0:
+	print("You lost!")
+else:
+	print("You won!")
