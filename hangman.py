@@ -7,6 +7,55 @@ import random
 def getword():
 	word = "testword"
 	return word
+
+
+#hardcoded hangman
+
+hangpost = (
+"""
+         /_\ 
+""",
+"""
+       	  |	
+          |
+          |
+         /_\ 
+""",
+"""
+      ____
+         \|
+       	  |	
+          |
+          |
+         /_\ 
+""",
+"""
+      ____
+      |  \|
+      o	  |	
+      |   |
+          |
+         /_\ 
+""",
+"""
+      ____
+      |  \|
+      o	  |	
+     -|-  |
+          |
+         /_\ 
+""",
+"""
+      ____
+      |  \|
+      o	  |	
+     -|-  |
+     /|   |
+         /_\ 
+""")
+
+
+
 	
 #variables initialization
 
@@ -45,6 +94,7 @@ while errorsleft > 0:
 	else:
 		print("Got it wrong!")
 		errorsleft -= 1
+		print (hangpost[maxerrors - errorsleft - 1])
 		
 	for i in range(len(worddisplay)):
 		if wordtoguess[i] in letterscumulated:
