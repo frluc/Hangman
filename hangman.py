@@ -5,6 +5,7 @@ import random
 #defining functions
 
 def getword():
+
 	file = open("./words/english_word_list","r")
 	word_list = file.read().split(",")
 	file.close()
@@ -14,51 +15,9 @@ def getword():
 
 def showhangpost(e):
 
-	#hardcoded hangman graphics
-
-	hangpost = (
-"""
-         /_\ 
-""",
-"""
-       	  |	
-          |
-          |
-         /_\ 
-""",
-"""
-      ____
-         \|
-       	  |	
-          |
-          |
-         /_\ 
-""",
-"""
-      ____
-      |  \|
-      o	  |	
-      |   |
-          |
-         /_\ 
-""",
-"""
-      ____
-      |  \|
-      o	  |	
-     -|-  |
-          |
-         /_\ 
-""",
-"""
-      ____
-      |  \|
-      o	  |	
-     -|-  |
-     /|   |
-         /_\ 
-""")
-	
+	file = open("./hangpost","r")
+	hangpost = file.read().split(",")
+	file.close()
 	print(hangpost[e])
 
 	
@@ -114,5 +73,6 @@ while errorsleft > 0:
 	
 if errorsleft == 0:
 	print("You lost!")
+	print("The word was:",''.join(wordtoguess).upper())
 else:
 	print("You won!")
