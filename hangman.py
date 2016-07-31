@@ -5,7 +5,10 @@ import random
 #defining functions
 
 def getword():
-	word = "testword"
+	file = open("./words/english_word_list","r")
+	word_list = file.read().split(",")
+	file.close()
+	word = word_list[random.randint(0, len(word_list) - 1)].strip()
 	return word
 	
 #variables initialization
