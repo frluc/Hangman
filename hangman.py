@@ -12,9 +12,11 @@ def getword():
 	return word
 
 
-#hardcoded hangman
+def showhangpost(e):
 
-hangpost = (
+	#hardcoded hangman graphics
+
+	hangpost = (
 """
          /_\ 
 """,
@@ -56,8 +58,8 @@ hangpost = (
      /|   |
          /_\ 
 """)
-
-
+	
+	print(hangpost[e])
 
 	
 #variables initialization
@@ -77,7 +79,7 @@ wordtoguess = list(getword().upper())
 worddisplay = list(wordtoguess)
 
 while errorsleft > 0:
-	
+
 	if errorsleft > 1:
 		print("You have "+str(errorsleft)+" guesses left")
 	elif errorsleft == 1:
@@ -97,7 +99,7 @@ while errorsleft > 0:
 	else:
 		print("Got it wrong!")
 		errorsleft -= 1
-		print (hangpost[maxerrors - errorsleft - 1])
+		showhangpost(maxerrors - errorsleft - 1)
 		
 	for i in range(len(worddisplay)):
 		if wordtoguess[i] in letterscumulated:
