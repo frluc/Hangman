@@ -1,6 +1,7 @@
 #Hangman
 
 import random
+import hangpost 
 
 #defining functions
 
@@ -13,13 +14,6 @@ def getword():
 	return word
 
 
-def showhangpost(e):
-
-	file = open("./hangpost","r")
-	hangpost = file.read().split(",")
-	file.close()
-	print(hangpost[e])
-
 	
 #variables initialization
 
@@ -27,6 +21,7 @@ maxerrors = 6
 guesses = ""
 letterscumulated = list()
 voidchar = "#"
+
 	
 #main
 
@@ -58,8 +53,8 @@ while errorsleft > 0:
 	else:
 		print("Got it wrong!")
 		errorsleft -= 1
-		showhangpost(maxerrors - errorsleft - 1)
-		
+		print (hangpost.hangpostdrawing[maxerrors - errorsleft - 1]) #imported from module
+	
 	for i in range(len(worddisplay)):
 		if wordtoguess[i] in letterscumulated:
 			worddisplay[i] = wordtoguess[i]
